@@ -102,7 +102,7 @@
         }
         send('opened');
         function move() { const rect = document.querySelector('.card').getBoundingClientRect(); const btnW = no.offsetWidth || 70, btnH = no.offsetHeight || 40; const x = Math.random() * (rect.width - btnW - 20) + 10; const y = Math.random() * (rect.height - btnH - 20) + 10; no.style.left = x + 'px'; no.style.top = y + 'px'; }
-        no.addEventListener('mouseenter', () => { send('tried_no'); move(); }); no.addEventListener('touchstart', (e) => { e.preventDefault(); send('tried_no_mobile'); move(); }, { passive: false }); no.addEventListener('click', (e) => { e.preventDefault(); send('clicked_no'); move(); }); yes.onclick = () => { send('clicked_yes'); result.innerHTML = 'Yayyyy ❤️'; };
+        no.addEventListener('mouseenter', () => { send('tried_no'); move(); }); no.addEventListener('touchstart', (e) => { e.preventDefault(); send('tried_no_mobile'); move(); }, { passive: false }); no.addEventListener('click', (e) => { e.preventDefault(); send('clicked_no'); move(); }); yes.onclick = () => { send('clicked_yes'); result.innerHTML = 'Yayyyy 🎉🎉'; };
     </script>
 </body>
 
