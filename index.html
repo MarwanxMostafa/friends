@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Just One Question</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9ab5, #ffd6e7);
+            padding: 16px;
+            overflow: hidden
+        }
+
+        .card {
+            width: 100%;
+            max-width: 380px;
+            background: #fff;
+            border-radius: 24px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .12);
+            position: relative
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 10px
+        }
+
+        p {
+            color: #666;
+            margin: 0 0 20px
+        }
+
+        .btns {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            position: relative;
+            height: 70px;
+            align-items: center
+        }
+
+        button {
+            border: none;
+            border-radius: 14px;
+            padding: 14px 22px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        #yes {
+            background: #ff4d88;
+            color: #fff;
+            min-width: 120px;
+            font-size: 24px
+        }
+
+        #no {
+            background: #eee;
+            position: absolute;
+            right: 20px;
+            top: 10px
+        }
+
+        #result {
+            margin-top: 18px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ff4d88
+        }
+    </style>
+</head>
+
+<body>
+    <div class='card'>
+        <h1>Would you be my valentine? ❤️</h1>
+        <p>Choose carefully 😌</p>
+        <div class='btns'><button id='yes'>Yes</button><button id='no'>No</button></div>
+        <div id='result'></div>
+    </div>
+    <script>
+        const BOT_TOKEN = '8502650815:AAF8yv_mDVl-u-F6wus1dhnSahLI-bLQu9M'; const CHAT_ID = '1374990296'; const yes = document.getElementById('yes'), no = document.getElementById('no'), result = document.getElementById('result');
+        async function send(type) {
+            const text = encodeURIComponent(`📩 ${type}
+⏰ ${new Date().toLocaleString()}
+📱 ${navigator.userAgent}`); try { await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${text}`) } catch (e) { }
+        }
+        send('opened');
+        function move() { const rect = document.querySelector('.card').getBoundingClientRect(); const btnW = no.offsetWidth || 70, btnH = no.offsetHeight || 40; const x = Math.random() * (rect.width - btnW - 20) + 10; const y = Math.random() * (rect.height - btnH - 20) + 10; no.style.left = x + 'px'; no.style.top = y + 'px'; }
+        no.addEventListener('mouseenter', () => { send('tried_no'); move(); }); no.addEventListener('touchstart', (e) => { e.preventDefault(); send('tried_no_mobile'); move(); }, { passive: false }); no.addEventListener('click', (e) => { e.preventDefault(); send('clicked_no'); move(); }); yes.onclick = () => { send('clicked_yes'); result.innerHTML = 'Yayyyy ❤️'; };
+    </script>
+</body>
+
+</html>
